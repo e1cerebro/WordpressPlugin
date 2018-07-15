@@ -18,16 +18,28 @@
    class UchennaPlugin{
 
 
-        function activate(){
-            echo "Plugin activated";
+        function __construct() {
+            add_action( 'init', array( $this, 'custom_post_type' ) );
         }
 
+        function activate(){
+            // generated a CPT
+		        $this->custom_post_type();
+             // flush rewrite rules
+	    	    flush_rewrite_rules();
+         }
+
         function deactivate(){
-            echo "Plugin deactivated";
+             //Flush the rewrite rules
         }
 
         function uninstall(){
-            
+            //delete CPT
+            //delete all plugin database data
+        }
+
+        function custom_post_type() {
+            register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
         }
 
    }
