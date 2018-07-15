@@ -17,10 +17,29 @@
    //My root class for the whole plugin
    class UchennaPlugin{
 
+
+        function activate(){
+            echo "Plugin activated";
+        }
+
+        function deactivate(){
+            echo "Plugin deactivated";
+        }
+
+        function uninstall(){
+            
+        }
+
    }
 
-   //Initailize this class only if it exists
+   //Initialize this class only if it exists
    if(class_exists('UchennaPlugin')){
        $uchennaPlugin = new UchennaPlugin();
    }
+
+   //Activation
+    register_activation_hook( __FILE__, array($uchennaPlugin, 'activate'));
+   //Deactivation
+   register_deactivation_hook( __FILE__, array($uchennaPlugin, 'deactivate') );
+   //Uninstall
 
